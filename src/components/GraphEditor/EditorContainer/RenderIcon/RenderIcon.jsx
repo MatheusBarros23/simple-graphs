@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { IconSpan } from '../../../IconSpan/IconSpan'
+import { SelectIconContainer } from './styles'
 
 const RenderIcon = ({ mode, onClick}) => {
     const iconRelation = {
@@ -7,16 +8,17 @@ const RenderIcon = ({ mode, onClick}) => {
         'Delete': 'delete_forever',
         'Edit': 'edit',
         'Clean': 'restart_alt',
-        'GoBack': 'arrow_back_ios',
     }
 
     return (
-        <IconSpan
-            className='material-symbols-outlined'
-            onClick={onClick}
-        >
-            {iconRelation[mode]}
-        </IconSpan>
+        <SelectIconContainer>
+            <IconSpan
+                className='material-symbols-outlined'
+                onClick={onClick}
+            >
+                {iconRelation[mode]}
+            </IconSpan>
+        </SelectIconContainer>
     )
 }
 

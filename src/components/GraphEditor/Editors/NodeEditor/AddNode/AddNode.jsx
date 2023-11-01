@@ -1,6 +1,7 @@
 import { NodeLabelContext } from "../../../../../providers/NodeLabelProvider"
 import { useCy } from "../../../../../providers/useCy"
 import { useCallback, useContext, useEffect } from "react"
+import InstructionBox from "../../../EditorContainer/InstructionBox/InstructionBox";
 
 const AddNode = () => {
   const cy = useCy();
@@ -33,7 +34,7 @@ const AddNode = () => {
   }, [cy, addNode])
   
   return (
-    <h1>Click to add a new node</h1>
+      <InstructionBox content={"Click on the canvas to add a node"} />
     )
   }
   

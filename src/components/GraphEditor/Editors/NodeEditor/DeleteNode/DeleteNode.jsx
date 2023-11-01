@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useCy } from '../../../../../providers/useCy';
+import InstructionBox from '../../../EditorContainer/InstructionBox/InstructionBox';
 
 const DeleteNode = () => {
     const cy = useCy();
@@ -17,7 +18,7 @@ const DeleteNode = () => {
     }, []);
 
     return (
-        <h1>Click on a node to delete</h1>
+        <InstructionBox content={"Click on a node to delete"} />
     );
 };
 

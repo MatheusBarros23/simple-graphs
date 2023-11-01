@@ -1,9 +1,11 @@
-import { Container, Navbar } from "./styles";
+import { Container, SelectedModeContainer, Navbar, Title } from "./styles";
 import { IconSpan } from "../../IconSpan/IconSpan";
 import { MainButton } from "../../MainButton/MainButton";
 import { useEffect, useState } from "react";
 import EdgeEditor from "../Editors/EdgeEditor/EdgeEditor";
 import NodeEditor from '../Editors/NodeEditor/NodeEditor'
+import RenderIcon from "./RenderIcon/RenderIcon";
+import ReturnArrow from "./ReturnArrow/ReturnArrow";
 
 const EditorContainer = () => {
     const [mode, setMode] = useState('');
@@ -19,20 +21,15 @@ const EditorContainer = () => {
     
     return (
         <Container>
-            <h1>Simple Graphs</h1>
+            <Title>Simple Graphs</Title>
             <Navbar>
                 {mode == '' && (<MainButton onClick={() => setMode('node')}>Node</MainButton>)}
                 {mode == '' && (<MainButton onClick={() => setMode('edge')}>Edge</MainButton>)}
-                {displayArrow && (
-                    <IconSpan 
-                        className="material-symbols-outlined" 
-                        onClick={() => setMode('')}
-                    >
-                        arrow_back_ios
-                    </IconSpan>
-                )}
-                {mode == 'node' && (<NodeEditor setDisplayArrow={setDisplayArrow}/>)}
-                {mode == 'edge' && (<EdgeEditor setDisplayArrow={setDisplayArrow} />)}
+                <SelectedModeContainer>
+                    {displayArrow && (<ReturnArrow onClick={() => setMode('')} />)}
+                    {mode == 'node' && (<NodeEditor setDisplayArrow={setDisplayArrow}/>)}
+                    {mode == 'edge' && (<EdgeEditor setDisplayArrow={setDisplayArrow} />)}
+                </SelectedModeContainer>
             </Navbar>
         </Container>
     )

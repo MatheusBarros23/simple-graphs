@@ -1,6 +1,8 @@
 import { NodeLabelContext } from '../../../../../providers/NodeLabelProvider';
 import { useContext } from 'react';
 import { useCy } from '../../../../../providers/useCy'
+import InstructionBox from '../../../EditorContainer/InstructionBox/InstructionBox';
+import { MainButton } from '../../../../MainButton/MainButton';
 
 
 const CleanNodes = () => {
@@ -14,8 +16,12 @@ const CleanNodes = () => {
 
     return (
         <>
-            <h1>Are you sure you want to delete all nodes? This can not be undone.</h1>
-            <button onClick={deleteAllNodes}>yas lul</button>
+            <InstructionBox
+                content={'Are you sure want to delete all nodes? This can not be undone.'}
+                button={
+                    <MainButton onClick={deleteAllNodes}>Yes</MainButton>
+                }
+            />
         </>
     )
 }

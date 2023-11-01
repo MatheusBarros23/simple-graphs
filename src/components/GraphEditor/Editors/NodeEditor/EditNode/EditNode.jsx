@@ -1,5 +1,7 @@
+import { MainButton } from '../../../../MainButton/MainButton';
 import { useCy } from '../../../../../providers/useCy'
 import { useEffect, useState } from 'react'
+import InstructionBox from '../../../EditorContainer/InstructionBox/InstructionBox';
 
 const EditNode = () => {
     const cy = useCy();
@@ -32,16 +34,20 @@ const EditNode = () => {
 
     return (
         <>
+            {!enableEdit && (<InstructionBox content={"Click on the node you wish to edit"} />)}
             {enableEdit && (
-                <>
-                <p>Editing: {cy.current.$(`#${selectedNode}`).data('label')}</p>
-                <input
-                    type="text"
-                    onChange={(e) => setNewNodeLabel(e.target.value)}
-                    placeholder='New label' 
+                <InstructionBox 
+                    content={
+                        <input
+                            type="text"
+                            onChange={(e) => setNewNodeLabel(e.target.value)}
+                            placeholder={`Insert new label...`}
+                        />
+                    }
+                    button={
+                        <MainButton onClick={addNewLabel}>Change</MainButton>
+                    }
                 />
-                <button onClick={addNewLabel}>Change</button>
-                </>
             )}
         </>
     )

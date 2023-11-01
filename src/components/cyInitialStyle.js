@@ -2,12 +2,10 @@ export const cyInitialStyle = [
     {
       selector: 'node',
       style: {
-        'background-color': '#00aeee',
+        'background-color': '#007AFF',
         'label': 'data(label)',
         'text-halign': 'center',
         'text-valign': 'center',
-        'text-outline-color': '#000',
-        'text-outline-width': 1,
         'color': '#FFF',
       }
     },

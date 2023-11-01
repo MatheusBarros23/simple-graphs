@@ -3,10 +3,12 @@ import AddNode from './AddNode/AddNode';
 import CleanNodes from './CleanNodes/CleanNodes';
 import DeleteNode from './DeleteNode/DeleteNode';
 import EditNode from './EditNode/EditNode';
+import InstructionBox from '../../EditorContainer/InstructionBox/InstructionBox';
 import PropTypes from 'prop-types'
 import RenderIcon from '../../EditorContainer/RenderIcon/RenderIcon';
+import ReturnArrow from '../../EditorContainer/ReturnArrow/ReturnArrow';
 
-const NodeEditor = ({setDisplayArrow}) => {
+const NodeEditor = ({ setDisplayArrow }) => {
     const modeList = ['Add', 'Edit', 'Delete', 'Clean']
 
     const [mode, setMode] = useState('');
@@ -22,13 +24,11 @@ const NodeEditor = ({setDisplayArrow}) => {
             setDisplayArrow(true);
         }
     }, [mode])
-    
+
     return (
-        <>  
-            {mode != '' && (
-                <RenderIcon mode='GoBack' onClick={() => setMode('')} />
-            )}
-            {mode == '' && modeList.map(mode => (
+        <>
+            {mode != '' && (<ReturnArrow onClick={() => setMode('')} />)}
+            {modeList.map(mode => (
                 <RenderIcon key={mode} mode={mode} onClick={() => setMode(mode)}>
                     {mode}
                 </RenderIcon>
@@ -37,6 +37,7 @@ const NodeEditor = ({setDisplayArrow}) => {
             {mode == 'Delete' && (<DeleteNode />)}
             {mode == 'Clean' && (<CleanNodes />)}
             {mode == 'Edit' && (<EditNode />)}
+            {mode == '' && <InstructionBox content={"Select a mode"}/>}
         </>
     )
 }

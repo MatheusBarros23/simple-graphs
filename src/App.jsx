@@ -1,7 +1,7 @@
 import { CyProvider } from './providers/CyProvider'
 import { NodeLabelProvider } from './providers/NodeLabelProvider'
 import GlobalStyles from './GlobalStyles'
-import NetworkGraph from './components/NetworkGraph'
+import NetworkGraph from './components/NetworkGraph/NetworkGraph'
 
 function App() {
   return (
