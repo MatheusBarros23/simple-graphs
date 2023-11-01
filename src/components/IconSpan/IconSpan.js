@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 // https://developers.google.com/fonts/docs/material_symbols
 export const IconSpan = styled.span`
@@ -16,5 +16,10 @@ export const IconSpan = styled.span`
     direction: ltr;
     &:hover{
         cursor: pointer;
+    }
+    ${props => 
+        props.isSelected && css`
+            color: var(--colors-blue, white);
+        `
     }
 `

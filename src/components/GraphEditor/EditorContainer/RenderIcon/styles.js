@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const SelectIconContainer = styled.div`
     display: flex;
@@ -8,4 +8,9 @@ export const SelectIconContainer = styled.div`
     height: 50px;
     width: 50px;
     background: var(--fills-tertiary, rgba(0, 0, 0, 0.12));
+    ${props => 
+        props.isSelected && css`
+            background: var(--colors-blue, #007AFF);
+        `
+    }
 `

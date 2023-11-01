@@ -1,10 +1,8 @@
 import { Container, SelectedModeContainer, Navbar, Title } from "./styles";
-import { IconSpan } from "../../IconSpan/IconSpan";
 import { MainButton } from "../../MainButton/MainButton";
 import { useEffect, useState } from "react";
 import EdgeEditor from "../Editors/EdgeEditor/EdgeEditor";
 import NodeEditor from '../Editors/NodeEditor/NodeEditor'
-import RenderIcon from "./RenderIcon/RenderIcon";
 import ReturnArrow from "./ReturnArrow/ReturnArrow";
 
 const EditorContainer = () => {
