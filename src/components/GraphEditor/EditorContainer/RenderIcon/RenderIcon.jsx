@@ -23,11 +23,10 @@ const RenderIcon = ({ currentMode, mode, onClick}) => {
     }, [mode, currentMode])
 
     return (
-        <SelectIconContainer isSelected={isSelected}>
+        <SelectIconContainer onClick={onClick} isSelected={isSelected}>
             <IconSpan
                 className='material-symbols-outlined'
                 isSelected={isSelected}
-                onClick={onClick}
             >
                 {iconRelation[mode]}
             </IconSpan>

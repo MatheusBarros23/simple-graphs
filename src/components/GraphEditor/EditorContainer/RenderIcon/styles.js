@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const SelectIconContainer = styled.div`
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +9,7 @@ export const SelectIconContainer = styled.div`
     height: 50px;
     width: 50px;
     background: var(--fills-tertiary, rgba(0, 0, 0, 0.12));
+    transition: all 0.3s;
     ${props => 
         props.isSelected && css`
             background: var(--colors-blue, #007AFF);

@@ -14,6 +14,8 @@ export const IconSpan = styled.span`
     word-wrap: normal;
     white-space: nowrap;
     direction: ltr;
+    transition: all 0.5s;
+    
     &:hover{
         cursor: pointer;
     }
