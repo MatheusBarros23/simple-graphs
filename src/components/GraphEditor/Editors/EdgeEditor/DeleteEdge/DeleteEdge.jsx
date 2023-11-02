@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useCy } from '../../../../../providers/useCy'
+import InstructionBox from '../../../EditorContainer/InstructionBox/InstructionBox';
 
 const DeleteEdge = () => {
     const cy = useCy();
@@ -18,7 +19,7 @@ const DeleteEdge = () => {
     }, [cy])
 
     return (
-        <h1>Click on a edge to delete it</h1>
+        <InstructionBox content={"Click on an edge to delete"} />
     )
 }
 

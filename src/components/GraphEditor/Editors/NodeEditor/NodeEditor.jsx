@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AddNode from './AddNode/AddNode';
 import CleanNodes from './CleanNodes/CleanNodes';
 import DeleteNode from './DeleteNode/DeleteNode';

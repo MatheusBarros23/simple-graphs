@@ -1,5 +1,7 @@
 import { useCy } from '../../../../../providers/useCy'
 import { useEffect, useState } from 'react'
+import InstructionBox from '../../../EditorContainer/InstructionBox/InstructionBox';
+import { MainButton } from '../../../../MainButton/MainButton';
 
 const EditEdge = () => {
     const cy = useCy();
@@ -35,14 +37,20 @@ const EditEdge = () => {
 
     return (
         <>
+            {!enableEdit && (<InstructionBox content={"Click on the edge you wish to edit"} />)}
             {enableEdit && (
-                <>
-                    <input 
-                        type="number"
-                        onChange={(e) => setNewWeight(e.target.value)}
-                    />
-                    <button onClick={editEdge}>Change</button>
-                </>
+                <InstructionBox 
+                    content={
+                        <input
+                            type="text"
+                            onChange={(e) => setNewWeight(e.target.value)}
+                            placeholder={`Insert new label...`}
+                        />
+                    }
+                    button={
+                        <MainButton onClick={editEdge}>Change</MainButton>
+                    }
+                />
             )}
         </>
     )

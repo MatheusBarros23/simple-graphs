@@ -1,19 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useCy } from '../../../../../providers/useCy'
 import AddEdgeModal from '../Modals/AddEdgeModal';
-import './AddEdge.css'
+import InstructionBox from '../../../EditorContainer/InstructionBox/InstructionBox';
+import { MainButton } from '../../../../MainButton/MainButton';
+import { CheckboxInput, SelectDirectionContainer, Slider, SliderBefore, StyledSwitch } from './styles';
 
 export const AddEdge = () => {
     const cy = useCy();
-
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const openModal = () => setIsModalOpen(true);
-    const closeModal = () => {
-        setTargetNode('');
-        setSourceNode('');
-        setIsModalOpen(false)
-    };
 
     const [sourceNode, setSourceNode] = useState('');
     const [targetNode, setTargetNode] = useState('');
@@ -35,7 +28,6 @@ export const AddEdge = () => {
             },
         })
         
-        console.log(directed)
         if (directed) {
             cy.current.$(`#${newEdgeId}`)
                 .style('target-arrow-shape', 'triangle')
@@ -44,7 +36,6 @@ export const AddEdge = () => {
         
         setSourceNode('');
         setTargetNode('');
-        closeModal();
     }
 
     const registerNode = useCallback((node) => {
@@ -53,7 +44,6 @@ export const AddEdge = () => {
             return;
         }
         setTargetNode(node);
-        openModal();
     }, [sourceNode, setTargetNode])
 
     const handleTap = (e) => registerNode(e.target.id());
@@ -69,20 +59,39 @@ export const AddEdge = () => {
     })
 
     return (
-        <AddEdgeModal isOpen={isModalOpen} onClose={closeModal}>
-            <input
-                type='number'
-                defaultValue={0}
-                onChange={(e) => setWeight(e.target.value)}
-            />
-            <div>
-                <p>Directed</p>
-                <label className="switch">
-                    <input type="checkbox" checked={directed} onChange={() => setDirected(!directed)} />
-                    <span className="slider round"></span>
-                </label>
-            </div>
-            <button onClick={() => addEdge(directed)}>Add </button>
-        </AddEdgeModal>
+        <>
+        {sourceNode == '' && (<InstructionBox content={"Click on the source edge"} />)}
+        {sourceNode != '' && targetNode == '' && (<InstructionBox content={"Click on the target edge"} />)}
+        {sourceNode != '' && targetNode != '' && 
+            (
+                <InstructionBox
+                    content={
+                        <input
+                            type="text"
+                            onChange={(e) => setWeight(e.target.value)}
+                            placeholder={`Insert weight...`}
+                        />
+                    }
+                    button={
+                        <>
+                            <SelectDirectionContainer>
+                                <p>Directed</p>
+                                <StyledSwitch  className={directed ? "round" : ""}>
+                                    <CheckboxInput 
+                                        type="checkbox" 
+                                        checked={directed} 
+                                        onChange={() => setDirected(!directed)} 
+                                    />
+                                    <Slider className="slider" />
+                                    <SliderBefore className="slider-before" />
+                                </StyledSwitch>
+                            </SelectDirectionContainer>
+                            <MainButton onClick={() => addEdge(directed)}>Add</MainButton>
+                        </>
+                    }
+                />
+            )
+        }
+        </>
     )
 }
