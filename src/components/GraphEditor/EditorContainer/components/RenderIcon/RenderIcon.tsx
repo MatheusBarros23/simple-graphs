@@ -17,6 +17,9 @@ const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) =
     'Delete': 'delete_forever',
     'Edit': 'edit',
     'Clean': 'restart_alt',
+    'Export': 'file_download',
+    'Import': 'file_upload',
+    'Help': 'question_mark',
   };
 
   useEffect(() => {
