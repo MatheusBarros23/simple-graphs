@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import cytoscape from 'cytoscape';
 import EditorContainer from '../GraphEditor/EditorContainer/EditorContainer';
+import Footer from '../Footer/Footer';
 import { cyInitialStyle } from '../cyInitialStyle';
 import { GraphContainer, NetworkContainer } from './styles';
 import { useCy } from '../../providers/useCy';
@@ -29,6 +30,7 @@ export const NetworkGraph: React.FC = () => {
             <NetworkContainer>
                 <GraphContainer id='graphContainer' ref={graphContainer} />
             </NetworkContainer>
+            <Footer />
         </div>
     );
 };
