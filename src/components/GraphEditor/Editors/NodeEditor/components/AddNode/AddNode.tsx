@@ -11,9 +11,11 @@ const AddNode: React.FC = () => {
         if (nodeLabel !== undefined) { 
             const label = nodeLabel + 1;
 
+            const newNodeId: number = Date.now();
+
             cy.current.add({
                 group: 'nodes',
-                data: { id: label, label: label },
+                data: { id: `${newNodeId}`, label: label },
                 position: { x: e.renderedPosition.x, y: e.renderedPosition.y },
             });
             setNodeLabel(label);
