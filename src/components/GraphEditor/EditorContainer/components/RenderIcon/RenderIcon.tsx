@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { IconSpan } from '../IconSpan/IconSpan';
 import { SelectIconContainer } from './styles';
 
+type ClickHandler = (() => void) | ((event: React.MouseEvent<HTMLDivElement>) => void);
+
 interface RenderIconProps {
   currentMode: string;
   mode: string;
-  onClick: (() => void) | ((event: React.ChangeEvent<HTMLInputElement>) => void);
+  onClick?: ClickHandler;
 }
 
 const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) => {
@@ -23,20 +25,8 @@ const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) =
   };
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (typeof onClick === 'function') {
-      if (onClick.length === 0) {
-        // Se a função não espera argumentos, chame-a diretamente
-        (onClick as () => void)();
-      } else {
-        // Se a função espera um argumento, crie um objeto de evento falso
-        const fakeEvent = {
-          target: event.target as HTMLInputElement,
-          currentTarget: event.currentTarget as HTMLInputElement,
-        };
-        (onClick as (event: React.ChangeEvent<HTMLInputElement>) => void)(fakeEvent as any);
-      }
-    }
-  }
+    onClick?.(event);
+  };
 
   useEffect(() => {
     if (currentMode === mode) {
