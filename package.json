@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
+    "posbuild": "tsc && vite build",
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
