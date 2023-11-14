@@ -3,12 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { IconSpan } from '../IconSpan/IconSpan';
 import { SelectIconContainer } from './styles';
 
-type ClickHandler = (() => void) | ((event: React.MouseEvent<HTMLDivElement>) => void);
-
 interface RenderIconProps {
   currentMode: string;
   mode: string;
-  onClick?: ClickHandler;
+  onClick?: any;
 }
 
 const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) => {
@@ -24,10 +22,6 @@ const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) =
     'Help': 'question_mark',
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    onClick?.(event);
-  };
-
   useEffect(() => {
     if (currentMode === mode) {
       setSelected(true);
@@ -37,7 +31,7 @@ const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) =
   }, [mode, currentMode]);
 
   return (
-    <SelectIconContainer onClick={handleClick} selected={selected}>
+    <SelectIconContainer onClick={onClick} selected={selected}>
       <IconSpan className='material-symbols-outlined' selected={selected}>
         {iconRelation[mode]}
       </IconSpan>
