@@ -6,7 +6,7 @@ import { SelectIconContainer } from './styles';
 interface RenderIconProps {
   currentMode: string;
   mode: string;
-  onClick: () => void;
+  onClick: (() => void) | ((event: React.ChangeEvent<HTMLInputElement>) => void);
 }
 
 const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) => {
@@ -22,6 +22,22 @@ const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) =
     'Help': 'question_mark',
   };
 
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (typeof onClick === 'function') {
+      if (onClick.length === 0) {
+        // Se a função não espera argumentos, chame-a diretamente
+        (onClick as () => void)();
+      } else {
+        // Se a função espera um argumento, crie um objeto de evento falso
+        const fakeEvent = {
+          target: event.target as HTMLInputElement,
+          currentTarget: event.currentTarget as HTMLInputElement,
+        };
+        (onClick as (event: React.ChangeEvent<HTMLInputElement>) => void)(fakeEvent as any);
+      }
+    }
+  }
+
   useEffect(() => {
     if (currentMode === mode) {
       setSelected(true);
@@ -31,7 +47,7 @@ const RenderIcon: React.FC<RenderIconProps> = ({ currentMode, mode, onClick }) =
   }, [mode, currentMode]);
 
   return (
-    <SelectIconContainer onClick={onClick} selected={selected}>
+    <SelectIconContainer onClick={handleClick} selected={selected}>
       <IconSpan className='material-symbols-outlined' selected={selected}>
         {iconRelation[mode]}
       </IconSpan>
